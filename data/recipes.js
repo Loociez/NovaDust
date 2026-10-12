@@ -1,0 +1,31 @@
+window.ALCH_DATA = window.ALCH_DATA || {};
+// Recipes. Order on the cauldron grid does not matter. kind: potion | relic | ascension.
+// ingredients = { itemId: count }. out = item id produced. known = true to start discovered.
+ALCH_DATA.recipes = [
+  {"id": "r_slime_tonic", "name": "Slime Tonic", "kind": "potion", "tier": 0, "out": "slime_tonic", "ingredients": {"slime_jelly": 1, "spring_water": 1}, "hint": "Ooze softened with clean water.", "known": true},
+  {"id": "r_haste", "name": "Haste Draught", "kind": "potion", "tier": 0, "out": "haste_draught", "ingredients": {"mana_herb": 2, "spring_water": 1}, "hint": "Herbs steeped in spring water quicken the hands."},
+  {"id": "r_fortune", "name": "Fortune Elixir", "kind": "potion", "tier": 0, "out": "fortune_elixir", "ingredients": {"glow_mushroom": 1, "bone_dust": 1, "slime_jelly": 1}, "hint": "Something that glows, something dead, something wet."},
+  {"id": "r_fire_tonic", "name": "Fire Tonic", "kind": "potion", "tier": 0, "out": "fire_tonic", "ingredients": {"fire_crystal": 1, "mana_herb": 1, "spring_water": 1}, "hint": "Spark, herb and water. In that spirit."},
+  {"id": "r_mana_wand", "name": "Mana Wand", "kind": "relic", "tier": 0, "out": "mana_wand", "ingredients": {"fire_crystal": 2, "mana_herb": 2, "bone_dust": 1}, "hint": "A wand wants a flame, a green thing and a bone."},
+  {"id": "r_bone_charm", "name": "Bone Charm", "kind": "relic", "tier": 0, "out": "bone_charm", "ingredients": {"bone_dust": 3, "slime_tonic": 1}, "hint": "Bones, bound with something soothing."},
+  {"id": "r_glow_ring", "name": "Glowcap Ring", "kind": "relic", "tier": 0, "out": "glowcap_ring", "ingredients": {"glow_mushroom": 2, "fire_crystal": 1, "spring_water": 1}, "hint": "Two caps, one ember, a splash."},
+  {"id": "r_stone0", "name": "Ascension Elixir", "kind": "ascension", "tier": 0, "out": "stone_0", "ingredients": {"mana_herb": 2, "fire_crystal": 2, "glow_mushroom": 2, "haste_draught": 1, "fortune_elixir": 1}, "hint": "Everything the marsh taught you, in one bottle."},
+  {"id": "r_ghost_brew", "name": "Ghost Brew", "kind": "potion", "tier": 1, "out": "ghost_brew", "ingredients": {"ectoplasm": 1, "nightshade": 1, "spring_water": 1}, "hint": "Ghost goo, bitter bloom, clear water."},
+  {"id": "r_spider_tincture", "name": "Spider Tincture", "kind": "potion", "tier": 1, "out": "spider_tincture", "ingredients": {"spider_silk": 2, "grave_moss": 1, "slime_tonic": 1}, "hint": "Silk and moss in a gentle base."},
+  {"id": "r_crypt_scepter", "name": "Crypt Scepter", "kind": "relic", "tier": 1, "out": "crypt_scepter", "ingredients": {"grave_iron": 2, "ectoplasm": 1, "bone_dust": 2, "fire_tonic": 1}, "hint": "Iron and bone, with a ghost and a spark."},
+  {"id": "r_wolf_talisman", "name": "Wolf Fang Talisman", "kind": "relic", "tier": 1, "out": "wolf_talisman", "ingredients": {"wolf_fang": 3, "grave_moss": 1, "fortune_elixir": 1}, "hint": "Three fangs for luck, wrapped in moss."},
+  {"id": "r_wraith_signet", "name": "Wraith Signet", "kind": "relic", "tier": 1, "out": "wraith_signet", "ingredients": {"ectoplasm": 2, "grave_iron": 1, "spider_silk": 2, "ghost_brew": 1}, "hint": "Bind a wraith with iron and silk."},
+  {"id": "r_stone1", "name": "Philosopher's Stone", "kind": "ascension", "tier": 1, "out": "stone_1", "ingredients": {"ectoplasm": 2, "grave_iron": 2, "nightshade": 2, "ghost_brew": 1, "spider_tincture": 1}, "hint": "The crypt's best, boiled down."},
+  {"id": "r_inferno", "name": "Inferno Draught", "kind": "potion", "tier": 2, "out": "inferno_draught", "ingredients": {"ember_ash": 2, "imp_blood": 1, "fire_tonic": 1}, "hint": "Take a fire tonic and make it worse."},
+  {"id": "r_brimstone", "name": "Brimstone Brew", "kind": "potion", "tier": 2, "out": "brimstone_brew", "ingredients": {"sulfur": 2, "demon_horn": 1, "ghost_brew": 1}, "hint": "Sulfur, horn and a ghost to keep it quiet."},
+  {"id": "r_ember_staff", "name": "Ember Staff", "kind": "relic", "tier": 2, "out": "ember_staff", "ingredients": {"magma_core": 1, "dragon_scale": 1, "grave_iron": 2, "ember_ash": 2}, "hint": "A core, a scale and plenty of iron."},
+  {"id": "r_imp_amulet", "name": "Imp-Horn Amulet", "kind": "relic", "tier": 2, "out": "imp_amulet", "ingredients": {"demon_horn": 2, "imp_blood": 2, "wolf_fang": 2}, "hint": "Horns and blood, with fangs for teeth."},
+  {"id": "r_dragon_band", "name": "Dragonscale Band", "kind": "relic", "tier": 2, "out": "dragon_band", "ingredients": {"dragon_scale": 2, "magma_core": 1, "sulfur": 2, "brimstone_brew": 1}, "hint": "Scales around a molten heart."},
+  {"id": "r_stone2", "name": "Dragonheart Stone", "kind": "ascension", "tier": 2, "out": "stone_2", "ingredients": {"dragon_scale": 2, "magma_core": 2, "imp_blood": 2, "inferno_draught": 1, "brimstone_brew": 1}, "hint": "Distil the pit into a single stone."},
+  {"id": "r_starlight", "name": "Starlight Elixir", "kind": "potion", "tier": 3, "out": "starlight_elixir", "ingredients": {"star_dust": 2, "moon_tear": 1, "haste_draught": 1}, "hint": "Stars and a tear, in a quick base."},
+  {"id": "r_void_draught", "name": "Void Draught", "kind": "potion", "tier": 3, "out": "void_draught", "ingredients": {"void_pearl": 1, "comet_iron": 1, "inferno_draught": 1}, "hint": "Feed an inferno to the void."},
+  {"id": "r_astral_scepter", "name": "Astral Scepter", "kind": "relic", "tier": 3, "out": "astral_scepter", "ingredients": {"comet_iron": 2, "star_dust": 2, "magma_core": 1, "void_draught": 1}, "hint": "Sky-iron, star dust and a little of everything."},
+  {"id": "r_phoenix_charm", "name": "Phoenix Charm", "kind": "relic", "tier": 3, "out": "phoenix_charm", "ingredients": {"phoenix_feather": 2, "angel_feather": 2, "imp_blood": 1}, "hint": "Two kinds of feathers, one drop of devil."},
+  {"id": "r_void_ring", "name": "Void Pearl Ring", "kind": "relic", "tier": 3, "out": "void_crown", "ingredients": {"void_pearl": 2, "moon_tear": 2, "dragon_scale": 1, "starlight_elixir": 1}, "hint": "Pearls set in moonlight and scale."},
+  {"id": "r_stone3", "name": "Eternal Stone", "kind": "ascension", "tier": 3, "out": "stone_3", "ingredients": {"phoenix_feather": 2, "void_pearl": 2, "star_dust": 2, "starlight_elixir": 1, "void_draught": 1}, "hint": "The last page of the book."}
+];

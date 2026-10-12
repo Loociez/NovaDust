@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#1c1830">
+<title>Alchemist's Cauldron</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <h1 id="title">Alchemist's Cauldron</h1>
+    <div class="top-stats">
+      <span class="asc-badge" id="ascBadge" hidden></span>
+      <span class="purse" title="Coins"><i class="ico" id="coinIcon"></i><b id="coins">0</b></span>
+    </div>
+  </header>
+
+  <section id="stage" aria-label="Harvest stage">
+    <div id="zoneBar" role="tablist"></div>
+    <div id="arena">
+      <canvas id="monster" width="192" height="192"></canvas>
+      <div id="floaters"></div>
+      <button id="satchelBadge" class="badge" title="Open satchel"></button>
+    </div>
+    <div id="monsterInfo">
+      <div class="name-row"><span id="monName">-</span><span id="monTag"></span></div>
+      <div class="hpbar"><div id="hpFill"></div><span id="hpText"></span></div>
+      <div id="buffBar"></div>
+    </div>
+  </section>
+
+  <nav id="tabs" role="tablist">
+    <button role="tab" data-tab="brew" class="on">Brew</button>
+    <button role="tab" data-tab="recipes">Recipes</button>
+    <button role="tab" data-tab="workshop">Workshop</button>
+    <button role="tab" data-tab="journal">Journal</button>
+  </nav>
+
+  <main id="panels">
+    <section class="panel on" id="panel-brew"></section>
+    <section class="panel" id="panel-recipes"></section>
+    <section class="panel" id="panel-workshop"></section>
+    <section class="panel" id="panel-journal"></section>
+  </main>
+  <div id="toasts" aria-live="polite"></div>
+  <div id="modal" hidden></div>
+</div>
+
+<!-- data (edit these, or use editor.html) -->
+<script src="data/config.js"></script>
+<script src="data/tiers.js"></script>
+<script src="data/items.js"></script>
+<script src="data/monsters.js"></script>
+<script src="data/recipes.js"></script>
+<script src="data/upgrades.js"></script>
+
+<!-- core -->
+<script src="js/util.js"></script>
+<script src="js/data.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/state.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/audio.js"></script>
+
+<!-- interface (each file is one self-contained panel) -->
+<script src="js/ui/ui.js"></script>
+<script src="js/ui/stage.js"></script>
+<script src="js/ui/satchel.js"></script>
+<script src="js/ui/cauldron.js"></script>
+<script src="js/ui/recipes.js"></script>
+<script src="js/ui/workshop.js"></script>
+<script src="js/ui/journal.js"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

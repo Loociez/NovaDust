@@ -1,0 +1,56 @@
+/* Editor-only styles (re-uses the game's colours from style.css) */
+body.ed { height: auto; min-height: 100%; overflow: auto; }
+#edTop { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--iron); border-bottom: 2px solid var(--line); }
+#edTop h1 { margin: 0; font-size: 20px; color: var(--brass); }
+#edActions { display: flex; flex-wrap: wrap; gap: 6px; }
+#edTabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 16px 0; border-bottom: 2px solid var(--line); }
+#edTabs button { background: none; border: 2px solid transparent; border-bottom: 0; padding: 6px 14px; color: var(--mute); font-size: 16px; }
+#edTabs button.on { background: var(--panel); border-color: var(--line); color: var(--brass); font-weight: 600; margin-bottom: -2px; }
+#edTabs .dirty::after { content: " *"; color: var(--ember); }
+#edMain { padding: 16px; max-width: 1200px; margin: 0 auto; }
+.split { display: grid; grid-template-columns: 280px 1fr; gap: 16px; align-items: start; }
+@media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+.list { background: var(--panel); border: 2px solid var(--line); max-height: 74vh; overflow-y: auto; }
+.list-tools { display: flex; gap: 6px; padding: 8px; position: sticky; top: 0; background: var(--panel); border-bottom: 2px solid var(--line); z-index: 1; }
+.list-tools input { flex: 1; min-width: 0; }
+.li { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid #3a3358; padding: 5px 8px; font-size: 14px; }
+.li.on { background: var(--panel-hi); box-shadow: inset 4px 0 0 var(--brass); }
+.li .sub { color: var(--mute); font-size: 12px; margin-left: auto; }
+.li .ico { width: 32px; height: 32px; }
+.form { background: var(--panel); border: 2px solid var(--line); padding: 14px; }
+.fields { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px 14px; }
+.field { display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: var(--mute); }
+.field.wide { grid-column: 1 / -1; }
+input, select, textarea { background: #0f0c18; color: var(--text); border: 2px solid var(--line); font: inherit; font-size: 15px; padding: 4px 6px; min-width: 0; }
+input[type=checkbox] { width: 20px; height: 20px; }
+input[type=color] { padding: 0; height: 32px; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--verd); outline-offset: 0; }
+.sub-h { margin: 16px 0 6px; font-size: 15px; color: var(--brass); display: flex; justify-content: space-between; align-items: center; }
+.rowline { display: grid; grid-template-columns: 1fr 80px auto; gap: 6px; margin-bottom: 4px; }
+.rowline.pre { grid-template-columns: 36px 1fr 80px auto; align-items: center; }
+.pick { display: flex; align-items: center; gap: 8px; }
+.pick .ico { border: 2px solid var(--line); background: #0f0c18; }
+.preview { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 14px; }
+.preview canvas { width: 192px; height: 192px; background: linear-gradient(#2c3f3a, #4d6b55); border: 2px solid var(--line); image-rendering: pixelated; }
+.strip { display: grid; grid-template-columns: repeat(6, 56px); gap: 4px; }
+.strip button { position: relative; width: 56px; height: 56px; padding: 0; background: #0f0c18; border: 2px solid #3a3550; }
+.strip button .ico { width: 48px; height: 48px; margin: 2px; }
+.strip button i.n { position: absolute; left: 2px; top: 0; font-size: 11px; font-style: normal; color: var(--mute); }
+.strip button.idle { border-color: var(--verd); }
+.strip button.hit { border-color: var(--ember); }
+.strip button.idle.hit { border-image: linear-gradient(45deg, var(--verd), var(--ember)) 1; }
+.legend { font-size: 12px; color: var(--mute); margin: 4px 0; }
+.legend b.g { color: var(--verd); } .legend b.e { color: var(--ember); }
+.picker { display: grid; gap: 4px; max-height: 60vh; overflow: auto; padding: 4px; }
+.picker.sprites { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
+.picker.icons { grid-template-columns: repeat(auto-fill, minmax(48px, 1fr)); }
+.picker button { background: #0f0c18; border: 2px solid #3a3550; padding: 2px; font-size: 11px; color: var(--mute); display: grid; place-items: center; }
+.picker button:hover { border-color: var(--brass); }
+.picker button.cur { border-color: var(--verd); }
+.picker .ico { margin: 0 auto; }
+#edModal { position: fixed; inset: 0; background: rgba(10,8,18,.85); display: grid; place-items: center; z-index: 50; padding: 16px; }
+#edModal .dialog { text-align: left; max-width: 760px; }
+.problems { margin: 0; padding-left: 18px; font-size: 14px; }
+.problems li.err { color: var(--bad); } .problems li.ok { color: var(--verd); list-style: none; margin-left: -18px; }
+.help { color: var(--mute); font-size: 14px; max-width: 80ch; margin: 0 0 14px; }
+#toasts { position: fixed; top: 60px; }
