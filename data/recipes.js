@@ -1,5 +1,5 @@
 window.ALCH_DATA = window.ALCH_DATA || {};
-// Recipes. Order on the cauldron grid does not matter. kind: potion | relic | ascension.
+// Recipes. Order on the grid does not matter. kind: potion | relic | ascension.
 // ingredients = { itemId: count }. out = item id produced. known = true to start discovered.
 ALCH_DATA.recipes = [
   {"id": "r_slime_tonic", "name": "Slime Tonic", "kind": "potion", "tier": 0, "out": "slime_tonic", "ingredients": {"slime_jelly": 1, "spring_water": 1}, "hint": "Ooze softened with clean water.", "known": true},
@@ -27,5 +27,29 @@ ALCH_DATA.recipes = [
   {"id": "r_astral_scepter", "name": "Astral Scepter", "kind": "relic", "tier": 3, "out": "astral_scepter", "ingredients": {"comet_iron": 2, "star_dust": 2, "magma_core": 1, "void_draught": 1}, "hint": "Sky-iron, star dust and a little of everything."},
   {"id": "r_phoenix_charm", "name": "Phoenix Charm", "kind": "relic", "tier": 3, "out": "phoenix_charm", "ingredients": {"phoenix_feather": 2, "angel_feather": 2, "imp_blood": 1}, "hint": "Two kinds of feathers, one drop of devil."},
   {"id": "r_void_ring", "name": "Void Pearl Ring", "kind": "relic", "tier": 3, "out": "void_crown", "ingredients": {"void_pearl": 2, "moon_tear": 2, "dragon_scale": 1, "starlight_elixir": 1}, "hint": "Pearls set in moonlight and scale."},
-  {"id": "r_stone3", "name": "Eternal Stone", "kind": "ascension", "tier": 3, "out": "stone_3", "ingredients": {"phoenix_feather": 2, "void_pearl": 2, "star_dust": 2, "starlight_elixir": 1, "void_draught": 1}, "hint": "The last page of the book."}
+  {"id": "r_stone3", "name": "Starheart Stone", "kind": "ascension", "tier": 3, "out": "stone_3", "ingredients": {"phoenix_feather": 2, "void_pearl": 2, "star_dust": 2, "starlight_elixir": 1, "void_draught": 1}, "hint": "Starlight, void and a very long wait."},
+  {"id": "r_tide_tonic", "name": "Tide Tonic", "kind": "potion", "tier": 4, "out": "tide_tonic", "ingredients": {"kelp_frond": 2, "brine_salt": 1, "spring_water": 1}, "hint": "Seaweed and salt, with something from the marsh."},
+  {"id": "r_deep_brew", "name": "Deep Brew", "kind": "potion", "tier": 4, "out": "deep_brew", "ingredients": {"jellyfish_bell": 1, "sea_pearl": 1, "ghost_brew": 1}, "hint": "A glowing bell, a pearl and a ghost."},
+  {"id": "r_trident", "name": "Tide Trident", "kind": "relic", "tier": 4, "out": "tide_trident", "ingredients": {"shell_shard": 2, "eel_tail": 2, "grave_iron": 1, "tide_tonic": 1}, "hint": "Shells and eels on a grave-iron shaft."},
+  {"id": "r_siren_charm", "name": "Siren Charm", "kind": "relic", "tier": 4, "out": "siren_charm", "ingredients": {"sea_pearl": 2, "jellyfish_bell": 2, "wolf_fang": 1}, "hint": "Pearls, bells and a single fang."},
+  {"id": "r_tidal_ring", "name": "Tidal Ring", "kind": "relic", "tier": 4, "out": "tidal_ring", "ingredients": {"sea_pearl": 2, "shell_shard": 2, "brine_salt": 2, "deep_brew": 1}, "hint": "Pearl, shell and salt in a deep brew."},
+  {"id": "r_stone4", "name": "Abyssal Sapphire", "kind": "ascension", "tier": 4, "out": "stone_4", "ingredients": {"sea_pearl": 2, "eel_tail": 2, "jellyfish_bell": 2, "tide_tonic": 1, "deep_brew": 1}, "hint": "The grotto, distilled."},
+  {"id": "r_frostward", "name": "Frostward Draught", "kind": "potion", "tier": 5, "out": "frostward_draught", "ingredients": {"frost_crystal": 2, "frostberry": 1, "tide_tonic": 1}, "hint": "Cold things in a salty base."},
+  {"id": "r_glacier_spirit", "name": "Glacier Spirit", "kind": "potion", "tier": 5, "out": "glacier_spirit", "ingredients": {"ice_lotus": 2, "frost_salt": 1, "starlight_elixir": 1}, "hint": "A lotus, salt and starlight."},
+  {"id": "r_rimeblade", "name": "Rimeblade", "kind": "relic", "tier": 5, "out": "rime_blade", "ingredients": {"mammoth_tusk": 2, "frost_crystal": 2, "yeti_fur": 1, "frostward_draught": 1}, "hint": "Ivory and ice, wrapped in fur."},
+  {"id": "r_yeti_charm", "name": "Yeti Fang Charm", "kind": "relic", "tier": 5, "out": "yeti_charm", "ingredients": {"yeti_fur": 2, "ice_lotus": 2, "phoenix_feather": 1}, "hint": "Fur and flowers, with one warm feather."},
+  {"id": "r_winter_ring", "name": "Winter Ring", "kind": "relic", "tier": 5, "out": "winter_ring", "ingredients": {"frost_crystal": 2, "mammoth_tusk": 1, "frost_salt": 2, "glacier_spirit": 1}, "hint": "Crystal, tusk and salt bound by spirit."},
+  {"id": "r_stone5", "name": "Heart of Winter", "kind": "ascension", "tier": 5, "out": "stone_5", "ingredients": {"frost_crystal": 2, "ice_lotus": 2, "mammoth_tusk": 2, "frostward_draught": 1, "glacier_spirit": 1}, "hint": "Everything the peaks can offer."},
+  {"id": "r_overclock", "name": "Overclock Tonic", "kind": "potion", "tier": 6, "out": "overclock_tonic", "ingredients": {"spring_coil": 2, "coal": 1, "haste_draught": 1}, "hint": "Coiled springs and a hot coal in a quick base."},
+  {"id": "r_coolant", "name": "Coolant Draught", "kind": "potion", "tier": 6, "out": "coolant_draught", "ingredients": {"crystal_lens": 1, "lead_shot": 2, "frostward_draught": 1}, "hint": "Something cold for something that runs hot."},
+  {"id": "r_tesla_rod", "name": "Tesla Rod", "kind": "relic", "tier": 6, "out": "tesla_rod", "ingredients": {"copper_ingot": 2, "spring_coil": 2, "brass_key": 1, "coolant_draught": 1}, "hint": "Copper, coil and a key to unlock it."},
+  {"id": "r_lens_charm", "name": "Lens Charm", "kind": "relic", "tier": 6, "out": "lens_charm", "ingredients": {"crystal_lens": 2, "brass_key": 2, "wolf_fang": 1}, "hint": "Two lenses, two keys and a fang."},
+  {"id": "r_gear_ring", "name": "Gearwork Ring", "kind": "relic", "tier": 6, "out": "gear_ring", "ingredients": {"brass_key": 2, "copper_ingot": 2, "coal": 2, "overclock_tonic": 1}, "hint": "A ring that ticks."},
+  {"id": "r_stone6", "name": "Perpetual Hourglass", "kind": "ascension", "tier": 6, "out": "stone_6", "ingredients": {"copper_ingot": 2, "spring_coil": 2, "crystal_lens": 2, "overclock_tonic": 1, "coolant_draught": 1}, "hint": "The foundry's masterwork."},
+  {"id": "r_chrono", "name": "Chrono Elixir", "kind": "potion", "tier": 7, "out": "chrono_elixir", "ingredients": {"time_sand": 2, "rift_shard": 1, "overclock_tonic": 1}, "hint": "Sand, a shard and a speeding tonic."},
+  {"id": "r_entropy", "name": "Entropy Brew", "kind": "potion", "tier": 7, "out": "entropy_brew", "ingredients": {"null_dust": 2, "chaos_orb": 1, "brimstone_brew": 1}, "hint": "Nothing, chaos and brimstone."},
+  {"id": "r_worldsplitter", "name": "Worldsplitter", "kind": "relic", "tier": 7, "out": "worldsplitter", "ingredients": {"rift_shard": 2, "null_dust": 2, "chaos_orb": 1, "entropy_brew": 1}, "hint": "Shards of the rift, forged in entropy."},
+  {"id": "r_eclipse_charm", "name": "Eclipse Charm", "kind": "relic", "tier": 7, "out": "eclipse_charm", "ingredients": {"eclipse_bloom": 2, "time_sand": 2, "angel_feather": 1}, "hint": "Two blooms, two grains of time and a feather."},
+  {"id": "r_rift_ring", "name": "Riftwalker Ring", "kind": "relic", "tier": 7, "out": "rift_ring", "ingredients": {"rift_door": 1, "chaos_orb": 2, "time_sand": 2, "chrono_elixir": 1}, "hint": "Walk through the door, wearing this."},
+  {"id": "r_stone7", "name": "Eternal Stone", "kind": "ascension", "tier": 7, "out": "stone_7", "ingredients": {"rift_shard": 2, "rift_door": 2, "eclipse_bloom": 2, "chrono_elixir": 1, "entropy_brew": 1}, "hint": "The last page of the book. And the first of the next."}
 ];

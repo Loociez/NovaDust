@@ -2,16 +2,17 @@
    Save options: write straight into your project folder (Chrome/Edge), download each file, or download a zip. */
 (function () {
   var A = window.Alch, el = A.el, S = A.sprites;
-  var FILES = ['config', 'tiers', 'items', 'monsters', 'recipes', 'upgrades'];
+  var FILES = ['config', 'tiers', 'items', 'monsters', 'recipes', 'upgrades', 'perks'];
   var HEAD = {
     config: '// Global game settings. Every number here is safe to tweak.',
     tiers: '// Zones. Brewing a zone\'s "ascension" recipe unlocks the next one for good.\n// sky = [top, bottom] backdrop colours, ground = floor colour.',
-    items: '// kind: ingredient | potion | relic | stone | junk | ui\n// potion -> effect { stat, secs, mult | add }   (stat: click | drop | coin | auto)\n// relic  -> slot (tool | charm | trinket), bonus { click, drop, coin, auto }\n// icon   -> cell number in assets/items.png (16 per row, 32x32 each)',
+    items: '// kind: ingredient | potion | relic | stone | junk | ui\n// potion -> effect { stat, secs, mult | add }   (stat: click | drop | coin | auto)\n// relic  -> slot (tool | charm | trinket), bonus { click, drop, coin, auto, yield, crit }\n// icon   -> cell number in assets/items.png (32 per row, 32x32 each)',
     monsters: '// Monsters. sprite = sprite number in assets/player.png (12 frames each).\n// Frames 0-2 face away, 3-5 face front, 6-8 and 9-11 face the sides: [idle, idle, attack].\n// idle = frames looped while waiting, hit = frames shown when clicked.\n// tier = zone it lives in. weight = spawn chance. boss = spawns every N kills. drops = { item, w }.',
     recipes: '// Recipes. Order on the grid does not matter. kind: potion | relic | ascension.\n// ingredients = { itemId: count }. out = item id produced. known = true to start discovered.',
-    upgrades: '// Coin upgrades (reset on ascension). cost = base * growth^level.\n// stat: click | drop | coin | auto | slots | stack. Each level adds `add`. icon = an item id.'
+    upgrades: '// Coin upgrades (reset on ascension). cost = base * growth^level.\n// stat: click | clickpct | drop | coin | auto | autopct | slots | stack. Each level adds `add`. icon = an item id.',
+    perks: '// Arcanum perks: permanent, bought with Essence (earned by ascending). cost = ceil(base * growth^level).\n// stat: pclick pcoin pdrop pslots pstack papprentice pspeed pcrit pcritdmg pstart pshiny pbatch pessence poffline pboss pautosell'
   };
-  var ARRAYS = ['tiers', 'items', 'monsters', 'recipes', 'upgrades'];
+  var ARRAYS = ['tiers', 'items', 'monsters', 'recipes', 'upgrades', 'perks'];
   var D = {}, dirty = {}, tab = 'monsters', selIdx = {}, filter = {}, handles = null;
   var anim = null; // running monster preview
 
@@ -103,7 +104,7 @@
   function checkData() {
     var out = [], err = function (m) { out.push(m); };
     var ids = {};
-    ['items', 'monsters', 'recipes', 'upgrades'].forEach(function (k) {
+    ['items', 'monsters', 'recipes', 'upgrades', 'perks'].forEach(function (k) {
       ids = {}; D[k].forEach(function (x) { if (!x.id) err(k + ': a row has no id'); else if (ids[x.id]) err(k + ': duplicate id "' + x.id + '"'); ids[x.id] = 1; });
     });
     var sheet = D.config.sheets.monsters, maxSprite = Math.ceil(((S.img.monsters ? S.img.monsters.width : 1024) / sheet.cell) * ((S.img.monsters ? S.img.monsters.height : 1024) / sheet.cell) / sheet.framesPerSprite) - 1;
@@ -129,6 +130,8 @@
       if (!D.monsters.some(function (m) { return m.tier === i; })) err('zone ' + i + ' (' + t.name + ') has no monsters');
     });
     D.upgrades.forEach(function (u) { if (!D.itemById[u.icon]) err('upgrade ' + u.id + ': icon item "' + u.icon + '" not found'); });
+    (D.perks || []).forEach(function (u) { if (!D.itemById[u.icon]) err('perk ' + u.id + ': icon item "' + u.icon + '" not found'); });
+    D.items.forEach(function (i) { if (i.kind === 'relic' && !i.slot) err('relic ' + i.id + ' has no slot'); });
     var list = el('ul', { class: 'problems' });
     if (!out.length) list = el('ul', { class: 'problems' }, el('li', { class: 'ok' }, 'No problems found.'));
     else out.forEach(function (m) { list.appendChild(el('li', { class: 'err' }, m)); });
@@ -220,6 +223,7 @@
     recipes: { label: 'Recipes', render: function () { return listTab('recipes', REC); } },
     tiers: { label: 'Zones', render: function () { return listTab('tiers', TIER); } },
     upgrades: { label: 'Upgrades', render: function () { return listTab('upgrades', UPG); } },
+    perks: { label: 'Perks', render: function () { return listTab('perks', PRK); } },
     config: { label: 'Config', render: configTab }
   };
 
@@ -321,7 +325,7 @@
         it.bonus = it.bonus || {};
         var rf = el('div', { class: 'fields' });
         rf.appendChild(sel(it, 'slot', k, ['tool', 'charm', 'trinket'], 'slot'));
-        ['click', 'drop', 'coin', 'auto'].forEach(function (s) { rf.appendChild(num(it.bonus, s, k, { optional: true, label: 'bonus ' + s })); });
+        ['click', 'drop', 'coin', 'auto', 'yield', 'crit'].forEach(function (s) { rf.appendChild(num(it.bonus, s, k, { optional: true, label: 'bonus ' + s })); });
         f.appendChild(el('div', { class: 'sub-h' }, el('span', {}, 'Relic'))); f.appendChild(rf);
       }
     }
@@ -381,14 +385,15 @@
       var fl = el('div', { class: 'fields' });
       fl.appendChild(txt(u, 'id', k)); fl.appendChild(txt(u, 'name', k)); fl.appendChild(txt(u, 'desc', k, { wide: true }));
       fl.appendChild(sel(u, 'icon', k, itemOpts(), 'icon (item)', true));
-      fl.appendChild(sel(u, 'stat', k, ['click', 'drop', 'coin', 'auto', 'slots', 'stack']));
+      fl.appendChild(sel(u, 'stat', k, k === 'perks' ? ['pclick', 'pcoin', 'pdrop', 'pslots', 'pstack', 'papprentice', 'pspeed', 'pcrit', 'pcritdmg', 'pstart', 'pshiny', 'pbatch', 'pessence', 'poffline', 'pboss', 'pautosell'] : ['click', 'clickpct', 'drop', 'coin', 'auto', 'autopct', 'slots', 'stack']));
       fl.appendChild(num(u, 'add', k, { label: 'added per level' })); fl.appendChild(num(u, 'base', k, { label: 'base cost' }));
       fl.appendChild(num(u, 'growth', k, { label: 'cost growth (x per level)', step: 0.01 })); fl.appendChild(num(u, 'max', k, { label: 'max level' }));
       f.appendChild(fl);
       var preview = [0, 1, 2, 5, 10].filter(function (l) { return l < u.max; }).map(function (l) { return 'lv ' + l + '->' + (l + 1) + ': ' + Math.round(u.base * Math.pow(u.growth, l)); }).join('   ');
-      f.appendChild(el('p', { class: 'help', style: 'margin-top:12px' }, 'Costs: ' + preview));
+      f.appendChild(el('p', { class: 'help', style: 'margin-top:12px' }, 'Costs: ' + preview + (k === 'perks' ? '  (Essence)' : '  (coins)')));
     }
   };
+  var PRK = Object.assign({}, UPG, { blank: function () { return { id: 'p_new_' + (D.perks.length + 1), name: 'New Perk', desc: '', icon: 'ui_essence', stat: 'pclick', add: 0.05, base: 2, growth: 1.3, max: 20 }; }, sub: function (u) { return u.stat; } });
 
   /* ---- config (generic tree) */
   function configTab() {
@@ -446,7 +451,7 @@
   window.addEventListener('beforeunload', function (e) { if (Object.keys(dirty).length) { e.preventDefault(); e.returnValue = ''; } });
 
   function init() {
-    FILES.forEach(function (k) { D[k] = A.clone(window.ALCH_DATA[k]); });
+    FILES.forEach(function (k) { D[k] = A.clone(window.ALCH_DATA[k] || (ARRAYS.indexOf(k) >= 0 ? [] : {})); });
     A.data = D; reindex();
     actions();
     S.load(D.config).then(show);

@@ -16,8 +16,16 @@
       zone: 0,                       // zone currently farmed
       ascensions: 0,
       known: {},                     // recipeId -> true
-      stats: { clicks: 0, kills: 0, brewed: 0, fizzled: 0, sold: 0, earned: 0, lost: 0 },
+      stats: { clicks: 0, kills: 0, brewed: 0, fizzled: 0, sold: 0, earned: 0, lost: 0, shinies: 0, orders: 0, crits: 0, essence: 0 },
       zoneKills: {},
+      essence: 0,                    // permanent currency, spent in the Arcanum
+      perks: {},                     // perkId -> level
+      bestiary: {},                  // monsterId -> kills (permanent)
+      shinies: {},                   // monsterId -> shinies found
+      orders: [],                    // active commissions
+      dismissAt: 0,
+      runEarned: 0,                  // coins earned this run (drives Essence)
+      lastRecipe: null,
       savedAt: Date.now()
     };
   };

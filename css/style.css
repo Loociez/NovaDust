@@ -77,8 +77,9 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--verd);
 .buff .ico { width: 22px; height: 22px; }
 
 /* ---------- tabs */
-#tabs { display: flex; margin: 10px 10px 0; border-bottom: 2px solid var(--line); }
-#tabs button { flex: 1; background: none; border: 0; padding: 9px 4px 7px; color: var(--mute); font-size: 16px; border-bottom: 4px solid transparent; margin-bottom: -2px; }
+#tabs { display: flex; margin: 10px 10px 0; border-bottom: 2px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+#tabs::-webkit-scrollbar { display: none; }
+#tabs button { flex: 1 0 auto; background: none; border: 0; padding: 9px 11px 7px; color: var(--mute); font-size: 16px; white-space: nowrap; border-bottom: 4px solid transparent; margin-bottom: -2px; }
 #tabs button.on { color: var(--brass); border-bottom-color: var(--brass); font-weight: 600; }
 #tabs button .dot { display: inline-block; width: 8px; height: 8px; background: var(--ember); margin-left: 5px; vertical-align: middle; }
 
@@ -203,3 +204,40 @@ a { color: var(--verd); }
 @media (prefers-reduced-motion: reduce) {
   .float, .toast, #brewResult, .pot.ready::after, .dialog.rebirth { animation-duration: .01s !important; animation-iteration-count: 1 !important; }
 }
+
+/* ---------- v2: essence, shiny, crit, orders, arcanum, codex */
+.purse.essence { border-color: #8a64d6; }
+.purse.essence b { color: #cdb6ff; }
+#monster.shiny { filter: hue-rotate(150deg) saturate(1.5) drop-shadow(0 0 10px #ffe38a) drop-shadow(0 0 2px #fff); animation: shinyPulse 1.2s steps(4) infinite; }
+@keyframes shinyPulse { 50% { filter: hue-rotate(150deg) saturate(1.8) brightness(1.25) drop-shadow(0 0 16px #ffe38a); } }
+#monTag.shiny { color: #ffe38a; }
+.float.crit { color: #ffd34a; font-size: 26px; }
+.float.ess { color: #cdb6ff; }
+.rec.order { grid-template-columns: 52px 1fr; }
+.order { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; background: var(--panel); border: 2px solid var(--line); padding: 8px; margin-bottom: 8px; }
+.order.ready { border-color: var(--verd); }
+.order .out { width: 52px; height: 52px; background: #0f0c18; border: 2px solid #3a3550; display: grid; place-items: center; }
+.order .out .ico { width: 44px; height: 44px; }
+.order h4 { margin: 0 0 2px; font-size: 16px; font-weight: 600; }
+.order .rw { display: flex; gap: 12px; align-items: center; font-size: 14px; color: var(--mute); flex-wrap: wrap; }
+.order .rw .ico { width: 18px; height: 18px; vertical-align: -4px; margin-right: 3px; }
+.order .have { color: var(--bad); } .order.ready .have { color: var(--verd); }
+.order .row-btns { margin-top: 6px; }
+.perk-head { display: flex; align-items: center; gap: 8px; font-size: 22px; margin-bottom: 4px; }
+.perk-head .ico { width: 30px; height: 30px; }
+.perk-head b { color: #cdb6ff; }
+.cod { display: grid; grid-template-columns: 56px 1fr; gap: 10px; align-items: center; background: var(--panel); border: 2px solid var(--line); padding: 6px 8px; margin-bottom: 6px; }
+.cod .pic { width: 56px; height: 56px; background: #0f0c18; border: 2px solid #3a3550; display: grid; place-items: center; }
+.cod .pic .ico { width: 48px; height: 48px; }
+.cod.unseen .pic .ico { filter: brightness(0); opacity: .6; }
+.cod.shiny .pic { border-color: #ffe38a; }
+.cod.shiny .pic .ico { filter: hue-rotate(150deg) saturate(1.5); }
+.cod h4 { margin: 0; font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; gap: 6px; }
+.cod .stars { color: var(--brass); letter-spacing: 2px; }
+.cod .sub { font-size: 12px; color: var(--mute); }
+.bar { height: 6px; background: var(--iron); border: 1px solid var(--line); margin-top: 3px; }
+.bar i { display: block; height: 100%; background: var(--verd); }
+.cod .star-shiny { color: #ffe38a; }
+.dialog .list-lines { text-align: left; font-size: 15px; margin: 8px 0; display: grid; gap: 4px; }
+.away-items { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 8px 0; }
+.away-items .ing { width: 40px; height: 40px; } .away-items .ing .ico { width: 32px; height: 32px; }

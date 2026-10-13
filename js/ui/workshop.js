@@ -19,10 +19,12 @@
   function renderStats() {
     var rows = [
       ['Click power', A.fmt(E.clickPower())],
-      ['Drop chance', A.pct(E.dropChance())],
+      ['Crit chance / damage', A.pct(E.critChance()) + ' / ' + E.critMult().toFixed(1) + 'x'],
+      ['Drop chance', A.pct(E.dropChance()) + (E.yieldChance() ? ' (+' + A.pct(E.yieldChance()) + ' bonus)' : '')],
       ['Coin bonus', A.pct(E.coinMult() - 1)],
       ['Apprentices', E.apprentices() + (E.apprentices() ? ' (' + (E.autoRate()).toFixed(1) + '/s)' : '')],
       ['Satchel', E.slots() + ' slots x ' + E.stackMax()],
+      ['Mastery bonus', '+' + ((E.masteryGlobal() - 1) * 100).toFixed(1) + '%'],
       ['Ascensions', A.state.ascensions]
     ];
     statsEl.innerHTML = '';
@@ -57,6 +59,6 @@
     p.appendChild(upgEl);
     buildUpgrades(); refresh();
     A.bus.on('coins', updateUpgrades);
-    ['upgrades', 'gear', 'buffs', 'ascended', 'recipes'].forEach(function (e) { A.bus.on(e, function () { refresh(); }); });
+    ['upgrades', 'gear', 'buffs', 'ascended', 'recipes', 'mastery', 'perks'].forEach(function (e) { A.bus.on(e, function () { refresh(); }); });
   };
 })();

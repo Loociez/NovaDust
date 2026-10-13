@@ -8,6 +8,8 @@
       A.state = A.loadSave();
       A.ui.init();
       A.engine.afterLoad();
+      var away = A.engine.offline(); if (away) A.ui.showAway(away);
+      A.ui.refreshHeader();
 
       var last = performance.now();
       function frame(now) {
@@ -19,7 +21,10 @@
       requestAnimationFrame(frame);
 
       setInterval(A.save, A.data.config.save.autosaveSec * 1000);
-      document.addEventListener('visibilitychange', function () { if (document.hidden) A.save(); });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) A.save();
+        else { var r = A.engine.offline(); if (r) A.ui.showAway(r); A.save(); }
+      });
       window.addEventListener('pagehide', A.save);
       ['brewed', 'ascended', 'bought', 'sold'].forEach(function (e) { A.bus.on(e, A.save); });
     });

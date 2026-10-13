@@ -17,6 +17,7 @@
     d.recipeById = {}; d.recipes.forEach(function (r) { d.recipeById[r.id] = r; });
     d.monsterById = {}; d.monsters.forEach(function (m) { d.monsterById[m.id] = m; });
     d.upgradeById = {}; d.upgrades.forEach(function (u) { d.upgradeById[u.id] = u; });
+    d.perks = d.perks || []; d.perkById = {}; d.perks.forEach(function (p) { d.perkById[p.id] = p; });
     A.data = d;
     return d;
   };

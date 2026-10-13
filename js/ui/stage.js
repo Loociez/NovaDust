@@ -16,7 +16,8 @@
   function renderInfo() {
     var m = E.monster(); if (!m) return;
     $('#monName').textContent = m.def.name;
-    $('#monTag').textContent = m.def.boss ? 'Boss' : '';
+    var tag = $('#monTag'); tag.textContent = (m.shiny ? 'Shiny ' : '') + (m.def.boss ? 'Boss' : ''); tag.className = m.shiny ? 'shiny' : '';
+    $('#monName').textContent = m.def.name + (E.masteryLevel(m.def.id) ? '  ' + new Array(E.masteryLevel(m.def.id) + 1).join('*') : '');
     $('#hpFill').style.width = (m.hp / m.maxHp * 100) + '%';
     $('#hpText').textContent = A.fmt(m.hp) + ' / ' + A.fmt(m.maxHp);
   }
@@ -68,11 +69,11 @@
     $('#satchelBadge').addEventListener('pointerdown', function (ev) { ev.stopPropagation(); });
     $('#satchelBadge').addEventListener('click', function () { A.ui.setTab('brew'); });
 
-    A.bus.on('monster', function (m) { view.setMonster(m.def, true); renderInfo(); });
+    A.bus.on('monster', function (m) { view.setMonster(m.def, true); $('#monster').classList.toggle('shiny', !!m.shiny); renderInfo(); });
     A.bus.on('hit', function (h) {
       view.hit(); renderInfo(); A.audio.play('hit');
       var p = h.auto || !lastPos ? { x: 35 + Math.random() * 30, y: 35 + Math.random() * 25 } : lastPos;
-      floater('dmg', p.x, p.y, String(h.dmg));
+      floater(h.crit ? 'crit' : 'dmg', p.x, p.y, h.crit ? h.dmg + '!' : String(h.dmg));
     });
     A.bus.on('drop', function (d) {
       var it = A.data.itemById[d.id], x = 30 + Math.random() * 40;
@@ -82,6 +83,7 @@
     A.bus.on('kill', function (k) {
       view.die(); A.audio.play('kill');
       floater('coin', 50, 22, '+' + A.fmt(k.coins) + ' coins');
+      if (k.essence) floater('ess', 50, 12, '+' + k.essence + ' Essence');
     });
     ['inv', 'upgrades'].forEach(function (e) { A.bus.on(e, renderBadge); });
     ['zone', 'ascended', 'recipes'].forEach(function (e) { A.bus.on(e, renderZones); });

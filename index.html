@@ -13,6 +13,7 @@
     <h1 id="title">Alchemist's Cauldron</h1>
     <div class="top-stats">
       <span class="asc-badge" id="ascBadge" hidden></span>
+      <span class="purse essence" id="essenceBox" title="Essence (permanent currency)" hidden><i class="ico" id="essIcon"></i><b id="essence">0</b></span>
       <span class="purse" title="Coins"><i class="ico" id="coinIcon"></i><b id="coins">0</b></span>
     </div>
   </header>
@@ -34,14 +35,20 @@
   <nav id="tabs" role="tablist">
     <button role="tab" data-tab="brew" class="on">Brew</button>
     <button role="tab" data-tab="recipes">Recipes</button>
+    <button role="tab" data-tab="orders">Orders</button>
     <button role="tab" data-tab="workshop">Workshop</button>
+    <button role="tab" data-tab="arcanum">Arcanum</button>
+    <button role="tab" data-tab="codex">Codex</button>
     <button role="tab" data-tab="journal">Journal</button>
   </nav>
 
   <main id="panels">
     <section class="panel on" id="panel-brew"></section>
     <section class="panel" id="panel-recipes"></section>
+    <section class="panel" id="panel-orders"></section>
     <section class="panel" id="panel-workshop"></section>
+    <section class="panel" id="panel-arcanum"></section>
+    <section class="panel" id="panel-codex"></section>
     <section class="panel" id="panel-journal"></section>
   </main>
   <div id="toasts" aria-live="polite"></div>
@@ -55,6 +62,7 @@
 <script src="data/monsters.js"></script>
 <script src="data/recipes.js"></script>
 <script src="data/upgrades.js"></script>
+<script src="data/perks.js"></script>
 
 <!-- core -->
 <script src="js/util.js"></script>
@@ -70,7 +78,10 @@
 <script src="js/ui/satchel.js"></script>
 <script src="js/ui/cauldron.js"></script>
 <script src="js/ui/recipes.js"></script>
+<script src="js/ui/orders.js"></script>
 <script src="js/ui/workshop.js"></script>
+<script src="js/ui/arcanum.js"></script>
+<script src="js/ui/codex.js"></script>
 <script src="js/ui/journal.js"></script>
 
 <script src="js/main.js"></script>

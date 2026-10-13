@@ -12,6 +12,8 @@
       ['Ascensions', s.ascensions],
       ['Clicks', A.fmt(st.clicks)], ['Creatures harvested', A.fmt(st.kills)],
       ['Brews', st.brewed], ['Fizzles', st.fizzled],
+      ['Critical hits', A.fmt(st.crits || 0)], ['Shiny kills', st.shinies || 0], ['Orders delivered', st.orders || 0],
+      ['Essence earned (all time)', A.fmt(st.essence || 0)],
       ['Items sold', A.fmt(st.sold)], ['Items lost to a full satchel', A.fmt(st.lost)],
       ['Coins earned (all time)', A.fmt(st.earned)]
     ];
@@ -44,7 +46,7 @@
       el('div', { class: 'h2' }, el('span', {}, 'Game data')),
       el('div', { class: 'note' }, A.usingOverride
         ? 'You are playing with edits previewed from the editor.'
-        : 'Monsters, items, recipes and upgrades live in the data folder.'));
+        : 'Monsters, items, recipes and upgrades live in the data folder. Open editor.html to change them.'));
     if (A.usingOverride) dev.appendChild(el('div', { class: 'row-btns' }, el('button', { class: 'btn small', onclick: function () { A.clearOverride(); location.reload(); } }, 'Use shipped data')));
     p.appendChild(dev);
     render();
