@@ -44,7 +44,7 @@
       el('div', { class: 'h2' }, el('span', {}, 'Game data')),
       el('div', { class: 'note' }, A.usingOverride
         ? 'You are playing with edits previewed from the editor.'
-        : 'Monsters, items, recipes and upgrades live in the data folder. Open editor.html to change them.'));
+        : 'Monsters, items, recipes and upgrades live in the data folder.'));
     if (A.usingOverride) dev.appendChild(el('div', { class: 'row-btns' }, el('button', { class: 'btn small', onclick: function () { A.clearOverride(); location.reload(); } }, 'Use shipped data')));
     p.appendChild(dev);
     render();
